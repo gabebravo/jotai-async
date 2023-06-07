@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import { createStore, Provider } from 'jotai';
+import { DevTools } from 'jotai-devtools';
+import AllRoutes from './components/Routes';
+
+const customStore = createStore();
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={customStore}>
+      <DevTools store={customStore} />
+      <div className="root">
+        <AllRoutes />
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;
